@@ -15,8 +15,8 @@ code {
 .header{
     display: flex;
     justify-content: space-between;
-    color: #fff
+    
 }
-h2.site-name{
+.header a:link, .header a:visited{
     color: #fff
 }

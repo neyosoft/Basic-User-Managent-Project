@@ -1,11 +1,28 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { Layout } from 'antd';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import { UserProvider } from './context';
+import { Home, NewUser } from './pages';
+import { Header, Footer } from './layouts';
+
 function App() {
     return (
         <UserProvider>
-            <div>Hello</div>
+            <Router>
+                <Layout>
+                    <Header />
+                    <Switch>
+                        <Route path='/' exact>
+                            <Home />
+                        </Route>
+                        <Route path='/add-user'>
+                            <NewUser />
+                        </Route>
+                    </Switch>
+                    <Footer />
+                </Layout>
+            </Router>
         </UserProvider>
     );
 }
