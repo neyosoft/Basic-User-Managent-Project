@@ -33,7 +33,8 @@ const Home = () => {
         {
             title: 'Hobby',
             key: 'hobby',
-            dataIndex: 'hobby'
+            dataIndex: 'hobby',
+            ellipsis: true
         },
         {
             title: 'Action',
@@ -49,7 +50,7 @@ const Home = () => {
                     <div className='home-table-container'>
                         <h2 className='regitration-title'>Users List</h2>
 
-                        <Table columns={columns} dataSource={users} />
+                        <Table columns={columns} dataSource={users} pagination={false} />
                     </div>
                 </Col>
             </Row>
