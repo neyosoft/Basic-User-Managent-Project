@@ -18,7 +18,7 @@ const EditUser = () => {
     };
 
     const handleSubmit = (updates) => {
-        success('Congratulate! User information successfully added.');
+        success('Congratulate! User information successfully updated.');
 
         updateUser(userID, updates);
 
