@@ -3,7 +3,7 @@ import { Layout } from 'antd';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import { UserProvider } from './context';
-import { Home, NewUser } from './pages';
+import { Home, NewUser, EditUser } from './pages';
 import { Header, Footer } from './layouts';
 
 function App() {
@@ -18,6 +18,9 @@ function App() {
                         </Route>
                         <Route path='/add-user'>
                             <NewUser />
+                        </Route>
+                        <Route path='/user/:user/edit'>
+                            <EditUser />
                         </Route>
                     </Switch>
                     <Footer />

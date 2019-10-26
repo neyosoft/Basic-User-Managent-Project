@@ -6,10 +6,13 @@ export default UserContext;
 
 class UserProvider extends Component {
     addUser = (user) => this.setState(({ users }) => ({ users: [...users, user] }));
+    updateUser = (userID, updates) =>
+        this.setState(({ users }) => ({ users: users.map((u) => (u.key === userID ? updates : u)) }));
 
     state = {
         users: [],
-        addUser: this.addUser
+        addUser: this.addUser,
+        updateUser: this.updateUser
     };
 
     render() {
