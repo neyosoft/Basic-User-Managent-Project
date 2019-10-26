@@ -22,7 +22,7 @@ const EditUser = () => {
 
         updateUser(userID, updates);
 
-        setTimeout(() => history.push('/'), 1000);
+        history.push('/');
     };
 
     return (
