@@ -1,92 +1,55 @@
-import React from 'react';
-import { Table, Divider, Tag, Button, Row, Col } from 'antd';
+import React, { useContext } from 'react';
+import { Table, Row, Col } from 'antd';
+import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 import { Page } from '../components';
+import UserContext from '../context';
 const Home = () => {
+    const { users } = useContext(UserContext);
+
     const columns = [
         {
-            title: 'Name',
-            dataIndex: 'name',
-            key: 'name',
-            render: (text) => <a>{text}</a>
+            title: 'First Name',
+            dataIndex: 'firstName',
+            key: 'firstName'
+        },
+        {
+            title: 'Last Name',
+            dataIndex: 'lastName',
+            key: 'lastName'
+        },
+        {
+            title: 'Birthday',
+            dataIndex: 'birthday',
+            key: 'birthday',
+            render: (date) => moment(date).format('MMMM Do, YYYY')
         },
         {
             title: 'Age',
-            dataIndex: 'age',
-            key: 'age'
+            key: 'age',
+            dataIndex: 'age'
         },
         {
-            title: 'Address',
-            dataIndex: 'address',
-            key: 'address'
-        },
-        {
-            title: 'Tags',
-            key: 'tags',
-            dataIndex: 'tags',
-            render: (tags) => (
-                <span>
-                    {tags.map((tag) => {
-                        let color = tag.length > 5 ? 'geekblue' : 'green';
-                        if (tag === 'loser') {
-                            color = 'volcano';
-                        }
-                        return (
-                            <Tag color={color} key={tag}>
-                                {tag.toUpperCase()}
-                            </Tag>
-                        );
-                    })}
-                </span>
-            )
+            title: 'Hobby',
+            key: 'hobby',
+            dataIndex: 'hobby'
         },
         {
             title: 'Action',
             key: 'action',
-            render: (text, record) => (
-                <span>
-                    <a>Invite {record.name}</a>
-                    <Divider type='vertical' />
-                    <a>Delete</a>
-                </span>
-            )
-        }
-    ];
-
-    const data = [
-        {
-            key: '1',
-            name: 'John Brown',
-            age: 32,
-            address: 'New York No. 1 Lake Park',
-            tags: ['nice', 'developer']
-        },
-        {
-            key: '2',
-            name: 'Jim Green',
-            age: 42,
-            address: 'London No. 1 Lake Park',
-            tags: ['loser']
-        },
-        {
-            key: '3',
-            name: 'Joe Black',
-            age: 32,
-            address: 'Sidney No. 1 Lake Park',
-            tags: ['cool', 'teacher']
+            render: (text, record) => <Link to={`/user/${record.key}/edit`}>Edit</Link>
         }
     ];
 
     return (
         <Page title='Home'>
             <Row>
-                <Col span={12} offset={6}>
-                    <h2>Users List</h2>
+                <Col xs={{ span: 20, offset: 2 }} lg={{ span: 16, offset: 4 }}>
+                    <div className='home-table-container'>
+                        <h2 className='regitration-title'>Users List</h2>
 
-                    <Table columns={columns} dataSource={data} />
-
-                    <div style={{ marginTop: '20px' }}>
-                        <Button type='primary'>Example Button</Button>
+                        <Table columns={columns} dataSource={users} />
                     </div>
                 </Col>
             </Row>
