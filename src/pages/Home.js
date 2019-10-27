@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { Table, Row, Col } from 'antd';
-import { Link } from 'react-router-dom';
 import moment from 'moment';
 
 import { Page } from '../components';
@@ -35,11 +34,6 @@ const Home = () => {
             key: 'hobby',
             dataIndex: 'hobby',
             ellipsis: true
-        },
-        {
-            title: 'Action',
-            key: 'action',
-            render: (text, record) => <Link to={`/user/${record.key}/edit`}>Edit</Link>
         }
     ];
 
