@@ -1,26 +1,30 @@
-import React, { useContext } from 'react';
-import { message } from 'antd';
-import { useHistory } from 'react-router-dom';
+import React from 'react';
 import uuid from 'uuid/v4';
+import { message } from 'antd';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import { Page } from '../components';
-import UserContext from '../context';
 import UserForm from '../components/UserForm';
+import { addUser } from '../redux/actions';
 
 const NewUser = () => {
-    const { addUser } = useContext(UserContext);
     const history = useHistory();
-
-    const success = (msg) => {
-        message.success(msg);
-    };
+    const dispatch = useDispatch();
 
     const handleSubmit = (userDetails) => {
-        success('Congratulate! User information successfully added.');
+        // message.info('Validating user information...');
+        const hide = message.loading('Validating user information...', 0);
+        setTimeout(hide, 3000);
 
-        addUser({ ...userDetails, key: uuid() });
+        setTimeout(() => {
+            const newUserInformation = { ...userDetails, key: uuid() };
 
-        history.push('/');
+            dispatch(addUser(newUserInformation));
+
+            message.success('Congratulate! User information successfully added.');
+            history.push('/');
+        }, 3500);
     };
 
     return (

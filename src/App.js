@@ -1,14 +1,16 @@
 import React from 'react';
 import { Layout } from 'antd';
+import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import { UserProvider } from './context';
-import { Home, NewUser, EditUser } from './pages';
+import store from './redux/store';
+
+import { Home, NewUser } from './pages';
 import { Header, Footer } from './layouts';
 
 function App() {
     return (
-        <UserProvider>
+        <Provider store={store}>
             <Router>
                 <Layout>
                     <Header />
@@ -19,14 +21,11 @@ function App() {
                         <Route path='/add-user'>
                             <NewUser />
                         </Route>
-                        <Route path='/user/:user/edit'>
-                            <EditUser />
-                        </Route>
                     </Switch>
                     <Footer />
                 </Layout>
             </Router>
-        </UserProvider>
+        </Provider>
     );
 }
 

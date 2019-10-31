@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Table, Row, Col } from 'antd';
 import moment from 'moment';
+import { useSelector } from 'react-redux';
 
 import { Page } from '../components';
-import UserContext from '../context';
 const Home = () => {
-    const { users } = useContext(UserContext);
+    const users = useSelector((store) => store.users);
 
     const columns = [
         {
