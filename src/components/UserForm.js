@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { DatePicker, Input, message } from 'antd';
-
 import moment from 'moment';
+
 const { TextArea } = Input;
 
 const dateFormat = 'DD/MM/YYYY';
@@ -60,9 +60,8 @@ const UserForm = ({ defaultData, onSubmit, buttonLabel }) => {
         e.preventDefault();
 
         if (validateForm()) {
-            setState({});
-
-            onSubmit(state);
+            const userInformation = { ...state, birthday: state.birthday.unix() };
+            onSubmit(userInformation);
         }
     };
 
@@ -97,7 +96,7 @@ const UserForm = ({ defaultData, onSubmit, buttonLabel }) => {
                     value={state.birthday}
                     disabledDate={shouldDisableDate}
                     placeholder='Select Date of birth'
-                    onChange={(date) => handleChange('birthday', date)}
+                    onChange={(date) => handleChange('birthday', moment(date))}
                 />
             </div>
 
