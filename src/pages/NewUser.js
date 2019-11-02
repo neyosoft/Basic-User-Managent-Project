@@ -1,20 +1,21 @@
 import React from 'react';
-import axios from 'axios';
 import { message } from 'antd';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import { Page } from '../components';
 import UserForm from '../components/UserForm';
-// import { addUser } from '../redux/actions';
+import { addUser } from '../redux/actions';
 
 const NewUser = () => {
     const history = useHistory();
+    const dispatch = useDispatch();
 
     const handleSubmit = async (userDetails) => {
         const hide = message.loading('Validating user information...', 0);
 
         try {
-            await axios.post('https://us-central1-function-testing-01.cloudfunctions.net/users', userDetails);
+            dispatch(addUser(userDetails));
 
             hide();
 

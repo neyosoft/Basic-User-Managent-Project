@@ -46,6 +46,7 @@ const Home = () => {
     const [users, setUsers] = useState([]);
     useEffect(() => {
         let mounted = true; // track when page is mounted
+
         const listener = database.ref('/users/').on('value', (snapshot) => {
             if (snapshot.exists() && mounted) {
                 // only update state when data exists and page still mounted

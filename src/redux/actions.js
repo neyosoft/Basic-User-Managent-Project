@@ -1,8 +1,4 @@
-import { RESET_USERS, ADD_USER } from './actionTypes';
-
-export const resetUsers = () => ({
-    type: RESET_USERS
-});
+import { ADD_USER } from './actionTypes';
 
 export const addUser = (user) => ({
     type: ADD_USER,
