@@ -5,7 +5,7 @@ import { database } from '../../firebase';
 import { setUsersAction } from '../actions';
 
 export function* fetchUsers() {
-    const channel = new eventChannel((emit) => {
+    const channel = new eventChannel((emiter) => {
         const listener = database.ref('/users/').on('value', (snapshot) => {
             if (snapshot.exists()) {
                 const mapUser = [];
@@ -14,7 +14,7 @@ export function* fetchUsers() {
                     mapUser.push(childSnapshot.val());
                 });
 
-                emit(mapUser);
+                emiter(mapUser);
             }
         });
 

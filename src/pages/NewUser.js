@@ -17,10 +17,12 @@ const NewUser = () => {
         try {
             dispatch(addUser(userDetails));
 
-            hide();
+            setTimeout(() => {
+                hide();
 
-            message.success('Congratulate! User information successfully added.');
-            history.push('/');
+                message.success('Congratulate! User information successfully added.');
+                history.push('/');
+            }, 2000);
         } catch (error) {}
     };
 
