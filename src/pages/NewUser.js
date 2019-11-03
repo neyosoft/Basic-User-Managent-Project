@@ -22,7 +22,7 @@ const NewUser = () => {
 
                 message.success('Congratulate! User information successfully added.');
                 history.push('/');
-            }, 2000);
+            }, 4000);
         } catch (error) {}
     };
 
