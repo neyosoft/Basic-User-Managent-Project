@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Table, Row, Col } from 'antd';
 import moment from 'moment';
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { Page } from '../components';
-
-import { database } from '../firebase';
 
 const columns = [
     {
@@ -43,31 +41,7 @@ const columns = [
 ];
 
 const Home = () => {
-    const [users, setUsers] = useState([]);
-    useEffect(() => {
-        let mounted = true; // track when page is mounted
-
-        const listener = database.ref('/users/').on('value', (snapshot) => {
-            if (snapshot.exists() && mounted) {
-                // only update state when data exists and page still mounted
-                console.log('There is an update: ', snapshot.val());
-                const mapUser = [];
-
-                snapshot.forEach(function(childSnapshot) {
-                    mapUser.push(childSnapshot.val());
-                });
-
-                setUsers(mapUser);
-            }
-        });
-
-        return () => {
-            listener.off && listener.off();
-            mounted = false;
-        };
-    }, []);
-
-    // const users = useSelector((store) => store.users);
+    const users = useSelector((store) => store.users);
 
     return (
         <Page title='Home'>

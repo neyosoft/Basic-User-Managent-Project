@@ -1,12 +1,11 @@
-import { ADD_USER } from '../actionTypes';
+import { SET_USERS } from '../actionTypes';
 
 const initialState = [];
 
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_USER: {
-            const { user } = action.payload;
-            return [...state, user];
+        case SET_USERS: {
+            return action.payload.users;
         }
 
         default:
